@@ -3,19 +3,19 @@ services:
   - docker
 
 before_install:
-  - docker build -t youjian/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t aiscream/react-test -f ./client/Dockerfile.dev ./client
 script:
-  - docker run -e CI=true youjian/react-test npm test
+  - docker run -e CI=true aiscream/react-test npm test
 
 after_success:
-  - docker build -t youjian/multi-client ./client
-  - docker build -t youjian/multi-nginx ./nginx
-  - docker build -t youjian/multi-server ./server
-  - docker build -t youjian/multi-worker ./worker
+  - docker build -t aiscream/multi-client ./client
+  - docker build -t aiscream/multi-nginx ./nginx
+  - docker build -t aiscream/multi-server ./server
+  - docker build -t aiscream/multi-worker ./worker
   #log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push youjian/multi-client
-  - docker push youjian/multi-nginx
-  - docker push youjian/multi-server
-  - docker push youjian/multi-worker
+  - docker push aiscream/multi-client
+  - docker push aiscream/multi-nginx
+  - docker push aiscream/multi-server
+  - docker push aiscream/multi-worker
 
